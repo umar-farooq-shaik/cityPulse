@@ -1,6 +1,6 @@
 # CityPulse: Smart City Issue Reporting
 
-![CityPulse Banner](https://drive.google.com/uc?export=view&id=1ZW6ppVfHQQa4P75FgCM3VkjcdlYNs4ku)
+![CityPulse Banner](https://drive.google.com/file/d/1eP-bcYunffFz0m-t-uQJzJ-XZ-2tZWoW/view?usp=sharing)
 
 CityPulse is a full-stack web application that empowers citizens to submit and track urban civic issues such as potholes, garbage collection, street light failures, and more. It combines a modern UI/UX design, robust backend, database integration, and API endpoints to create a production-ready platform.
 
