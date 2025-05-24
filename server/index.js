@@ -37,7 +37,7 @@ app.get('/api/issues', async (req, res) => {
       query = query.or(`title.ilike.%${search}%,description.ilike.%${search}%`);
     }
     
-    const { data, error } = await query.order('createdAt', { ascending: false });
+    const { data, error } = await query.order('created_at', { ascending: false });
     
     if (error) throw error;
     

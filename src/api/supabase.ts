@@ -26,7 +26,7 @@ export async function fetchIssues(category?: Category, status?: Status, searchQu
     query = query.or(`title.ilike.%${searchQuery}%,description.ilike.%${searchQuery}%`);
   }
   
-  const { data, error } = await query.order('createdAt', { ascending: false });
+  const { data, error } = await query.order('created_at', { ascending: false });
   
   if (error) {
     console.error('Error fetching issues:', error);
@@ -36,7 +36,7 @@ export async function fetchIssues(category?: Category, status?: Status, searchQu
   return data as Issue[];
 }
 
-export async function createIssue(issue: Omit<Issue, 'id' | 'createdAt'>): Promise<Issue> {
+export async function createIssue(issue: Omit<Issue, 'id' | 'created_at'>): Promise<Issue> {
   const { data, error } = await supabase
     .from('issues')
     .insert([{ ...issue, status: 'Open' }])
