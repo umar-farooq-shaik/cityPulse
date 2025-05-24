@@ -1,5 +1,5 @@
 import React from 'react';
-import { formatDistanceToNow } from 'date-fns';
+import dayjs from 'dayjs';
 import Card, { CardBody, CardFooter, CardHeader } from '../ui/Card';
 import Badge from '../ui/Badge';
 import Button from '../ui/Button';
@@ -22,15 +22,15 @@ const IssueCard: React.FC<IssueCardProps> = ({
   const handleResolveClick = () => {
     onMarkAsResolved(issue.id);
   };
-  
-  const formatDate = (dateString: string) => {
-    try {
-      return formatDistanceToNow(new Date(dateString), { addSuffix: true });
-    } catch (error) {
+
+  const formatDate = (dateString?: string) => {
+    if (!dateString || !dayjs(dateString).isValid()) {
       return 'Invalid date';
     }
+    return dayjs(dateString).format('DD MMM YYYY');
+
   };
-  
+
   return (
     <Card hoverable className="h-full flex flex-col">
       <CardHeader className="flex justify-between items-start">
@@ -47,9 +47,9 @@ const IssueCard: React.FC<IssueCardProps> = ({
         <p className="text-gray-600 line-clamp-3">{issue.description}</p>
       </CardBody>
       <CardFooter className="flex justify-between items-center">
-        <Badge variant="default" className="text-gray-600">
-          {formatDate(issue.createdAt)}
-        </Badge>
+      <Badge variant="default" className="text-gray-600">
+  {formatDate(issue.created_at || issue.created_at)}
+</Badge>
         {issue.status === 'Open' && (
           <Button 
             size="sm"

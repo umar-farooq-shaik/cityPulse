@@ -8,8 +8,19 @@
 // Use 'console.log()' to print to the debug output.
 // For more documentation on playgrounds please refer to
 // https://www.mongodb.com/docs/mongodb-vscode/playgrounds/
-const { data, error } = await supabase
-  .from('issues')
-  .select('*')
-  .gte('created_at', '2023-01-01T00:00:00')
-  .lt('created_at', '2023-01-02T00:00:00');
+export const fetchIssues = async (category, status, searchQuery) => {
+     let query = supabase.from('issues').select('*');
+   
+     if (category) query = query.eq('category', category);
+     if (status) query = query.eq('status', status);
+     if (searchQuery) query = query.ilike('title', `%${searchQuery}%`);
+   
+     const { data, error } = await query;
+   
+     if (error) {
+       throw error;
+     }
+   
+     return data;
+   };
+   

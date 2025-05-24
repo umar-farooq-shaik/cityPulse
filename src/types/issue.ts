@@ -8,7 +8,7 @@ export interface Issue {
   category: Category;
   location: string;
   status: Status;
-  createdAt: string; // ISO date string
+  created_at: string; // ISO date string
 }
 
 export interface IssueStats {
